@@ -1,0 +1,49 @@
+Codes to visualize neuronal traces, both raw and filtered traces. Also code to choose the good neurons.
+
+To eliminate false neurones: 
+1. Open graficar_trazas
+	a. Load ms file for animal x by dragging it in the Command Window;
+	b. Run code;
+	c. You will see this on the CW, write 1: 
+		Graph options:
+		1. All the neurones
+		2. Only real neurones
+		3. Only fake neurones
+		Choose an option (1/2/3): 1
+	d. Look at your traces and decide if u need eliminate neurones. If you need to reduce the "cut" the image, take note of the x and y coordinates (superior and inferior) 
+2. Open get_good_neurones_ms_sandra:
+	a. Wherevent you want create a folder called for example good_neurones_x
+	b. Find this line (should be number 10):
+		% Cargar la estructura 
+		load('F:\your\ms\file\path', 'ms');
+	   and substitute with the patn of your ms file.
+	c. Find this lines (should be number 129 to the end):
+		% Guardar los resultados
+		save('F:\path\good_neurones_x\good_neurons_M3.mat', 'good_neurons');
+
+		% Opcional: guardar los índices de las buenas neuronas
+		good_neurons_indices = find(good_neurons);
+		save('F:\path\good_neurones_x\good_neurons_M3_index.mat', 'good_neurons_indices');
+	   Substitute both paths with the path of your Good_Neurones folder path and name.
+	   Change the names M3 with the name of your animal.
+	d. If you haven't done it before write clear in the CW;
+	e. Run code;
+	f. To this question answer as follows
+		¿Desea excluir los outliers del cálculo del umbral? (s/n): y
+	   	¿Desea excluir neuronas con picos exageradamente grandes? (s/n): n
+		¿Desea excluir neuronas con picos exageradamente grandes? (s/n): 
+			This depends on the graph. If you have exagerated picks put y (otherwise n)
+			if y: Elige el método para excluir neuronas con picos exageradamente grandes: (1) isoutlier, (2) 99% de confianza, (3) 95% de confianza:
+				Start by the least restrictive (2) and then go to 3 if needed.
+		The following for can b left blank if not needed. Otherwise write the limits you need.
+		Ingrese el límite superior de la coordenada X para considerar neuronas como malas (dejar en blanco para omitir):
+3. Open graficar_trazas
+	a. Load ms file for animal, and the good_neurons_x.mat and good_neurons_x_index.mat from your Good_Neurones folder;
+	b. Run code;
+	c. You will see this on the CW, write 2 or 3: 
+		Graph options:
+		1. All the neurones
+		2. Only real neurones
+		3. Only fake neurones
+		Choose an option (1/2/3): 2
+	d. Look at your traces and decide if u need eliminate any more neurones and do this again or you are good. 
